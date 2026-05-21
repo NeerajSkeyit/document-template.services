@@ -8,13 +8,14 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const { default: puppeteer } = require("puppeteer");
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/docgen", {
+mongoose.connect(process.env.NODE_MONGO, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -241,4 +242,4 @@ app.get("/download/:id", async (req, res) => {
   res.end(pdf);
 });
 
-app.listen(5000, () => console.log("Server running on 5000"));
+app.listen(8080, () => console.log("Server running on 8080"));
