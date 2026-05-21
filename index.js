@@ -49,6 +49,11 @@ const getMimeType = (filePath) => {
 };
 
 // Upload letterhead
+app.get("/", upload.single("file"), (req, res) => {
+  res.send("Here We go again!");
+});
+
+// Upload letterhead
 app.post("/upload", upload.single("file"), (req, res) => {
   const { type } = req.body; // "header" or "footer"
   console.log("askjdkfs", type, req.file);
@@ -236,4 +241,4 @@ app.get("/download/:id", async (req, res) => {
   res.end(pdf);
 });
 
-app.listen(8080, () => console.log("Server running on 8080"));
+app.listen(5000, () => console.log("Server running on 5000"));
